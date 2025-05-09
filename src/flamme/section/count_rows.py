@@ -340,8 +340,6 @@ def create_temporal_count_table_row(label: str, num_rows: int) -> str:
 
     ```pycon
 
-    >>> from datetime import datetime, timezone
-    >>> import polars as pl
     >>> from flamme.section.count_rows import create_temporal_count_table_row
     >>> row = create_temporal_count_table_row(label="meow", num_rows=42)
 
