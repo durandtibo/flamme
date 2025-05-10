@@ -48,5 +48,5 @@ def figure2html(fig: plt.Figure | None, reactive: bool = True, close_fig: bool =
     data = base64.b64encode(img.getvalue()).decode("utf-8")
     if close_fig:
         plt.close(fig)
-    style = 'style="width:100%; height:auto;" ' if reactive else False
+    style = 'style="width:100%; height:auto;" ' if reactive else ""
     return f'<img {style}src="data:image/png;charset=utf-8;base64, {data}">'
