@@ -4814,4 +4814,4 @@ all = ["clickhouse-connect", "colorlog", "hya", "markdown", "tqdm"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.9,<3.13"
-content-hash = "e0b966e124745f434a59319b61ddee5e49a169bc2ba074a430e2c2eb54d48c6c"
+content-hash = "0256b8e4df984c3c746ed3f652ade12a8dd9a86579ef7c6b5ce2eab90fadabee"
