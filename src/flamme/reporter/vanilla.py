@@ -29,7 +29,7 @@ class Reporter(BaseReporter):
     Args:
         ingestor: The ingestor or its configuration.
         transformer: The data transformer or its configuration.
-        ingestor: The analyzer or its configuration.
+        analyzer: The analyzer or its configuration.
         report_path: The path where to save the HTML report.
         max_toc_depth: The maximum level to show in the
             table of content.
