@@ -1111,22 +1111,22 @@ devel = ["colorama", "json-spec", "jsonschema", "pylint", "pytest", "pytest-benc
 
 [[package]]
 name = "feu"
-version = "0.3.4"
+version = "0.3.5"
 description = "A light library to help to manage packages"
 optional = false
 python-versions = "<3.14,>=3.9"
 groups = ["dev"]
 files = [
-    {file = "feu-0.3.4-py3-none-any.whl", hash = "sha256:2b475ad1ab2826d5aece14cbc1581b22d387822e31dd38ca609736bd00ce6c81"},
-    {file = "feu-0.3.4.tar.gz", hash = "sha256:6c044cf32c4a75d94f384ee88fe38a58b5ef56f9e7428fb266edae567c8a7410"},
+    {file = "feu-0.3.5-py3-none-any.whl", hash = "sha256:b112dd5336eb6bf7d130dc8fce4a70572ee98e557fe4fa1d8fc3dd283e8e5823"},
+    {file = "feu-0.3.5.tar.gz", hash = "sha256:103073a8fcb16124901736e4223e4c3d55a020e78a7551623725b70ecb61ad2d"},
 ]
 
 [package.dependencies]
 packaging = ">=21.0,<26.0"
 
 [package.extras]
-all = ["click (>=8.1,<9.0)"]
-cli = ["click (>=8.1,<9.0)"]
+all = ["click (>=8.1,<8.2) ; python_version == \"3.9\"", "click (>=8.1,<9.0)"]
+cli = ["click (>=8.1,<8.2) ; python_version == \"3.9\"", "click (>=8.1,<9.0)"]
 git = ["gitpython (>=3.1.41,<4.0)"]
 
 [[package]]
@@ -1347,22 +1347,22 @@ zstd = ["zstandard (>=0.18.0)"]
 
 [[package]]
 name = "hya"
-version = "0.2.4"
+version = "0.3.0"
 description = "A library of custom OmegaConf resolvers"
 optional = true
 python-versions = "<3.14,>=3.9"
 groups = ["main"]
 markers = "extra == \"all\""
 files = [
-    {file = "hya-0.2.4-py3-none-any.whl", hash = "sha256:1ed133c0bceaf845496fad4490253889365078714ca296ae34aa0ad022585d51"},
-    {file = "hya-0.2.4.tar.gz", hash = "sha256:7948d6b7cd0470a35e62f3eb7a0dd52a43d1520fe2d4dab0b19ea6b067d0ae12"},
+    {file = "hya-0.3.0-py3-none-any.whl", hash = "sha256:6108425b1d94b215795369c31fdc7ab07669c4913e971687694d5a3452bc0258"},
+    {file = "hya-0.3.0.tar.gz", hash = "sha256:698b653329d4314dd0c633aefac906344fe4c85044982bc893f083c58532b3ea"},
 ]
 
 [package.dependencies]
 omegaconf = ">=2.2,<3.0"
 
 [package.extras]
-all = ["braceexpand (>=0.1.7,<0.2.0)", "numpy (>=1.21,<3.0)", "torch (>=1.9.0,<2.3) ; sys_platform == \"darwin\" and platform_machine != \"arm64\" and python_version >= \"3.9\" and python_version < \"3.13\"", "torch (>=1.9.0,<3.0) ; python_version >= \"3.9\" and python_version < \"3.13\""]
+all = ["braceexpand (>=0.1.7,<0.2.0)", "numpy (>=1.24,<3.0)", "numpy (>=2.1,<3.0) ; python_version == \"3.13\"", "torch (>=2.0,<2.3) ; sys_platform == \"darwin\" and platform_machine != \"arm64\" and python_version >= \"3.9\" and python_version < \"3.13\"", "torch (>=2.0,<3.0) ; sys_platform == \"linux\" or sys_platform == \"darwin\" and platform_machine == \"arm64\""]
 
 [[package]]
 name = "iden"
