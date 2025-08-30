@@ -40,7 +40,7 @@ jobs:
           make install
 
       - name: Install valid package version
-        uses: durandtibo/pip-install-package-action@v0.3.3
+        uses: durandtibo/pip-install-package-action@v0.3.4
         with:
           package-name: 'coola'
           package-version: ${{ matrix.coola-version }}
@@ -88,7 +88,7 @@ jobs:
           make install
 
       - name: Install valid package version
-        uses: durandtibo/pip-install-package-action@v0.3.3
+        uses: durandtibo/pip-install-package-action@v0.3.4
         with:
           package-name: 'grizz'
           package-version: ${{ matrix.grizz-version }}
@@ -136,7 +136,7 @@ jobs:
           make install
 
       - name: Install valid package version
-        uses: durandtibo/pip-install-package-action@v0.3.3
+        uses: durandtibo/pip-install-package-action@v0.3.4
         with:
           package-name: 'iden'
           package-version: ${{ matrix.iden-version }}
@@ -184,7 +184,7 @@ jobs:
           make install
 
       - name: Install valid package version
-        uses: durandtibo/pip-install-package-action@v0.3.3
+        uses: durandtibo/pip-install-package-action@v0.3.4
         with:
           package-name: 'jinja2'
           package-version: ${{ matrix.jinja2-version }}
@@ -232,7 +232,7 @@ jobs:
           make install
 
       - name: Install valid package version
-        uses: durandtibo/pip-install-package-action@v0.3.3
+        uses: durandtibo/pip-install-package-action@v0.3.4
         with:
           package-name: 'matplotlib'
           package-version: ${{ matrix.matplotlib-version }}
@@ -288,7 +288,7 @@ jobs:
           make install
 
       - name: Install valid package version
-        uses: durandtibo/pip-install-package-action@v0.3.3
+        uses: durandtibo/pip-install-package-action@v0.3.4
         with:
           package-name: 'numpy'
           package-version: ${{ matrix.numpy-version }}
@@ -336,7 +336,7 @@ jobs:
           make install
 
       - name: Install valid package version
-        uses: durandtibo/pip-install-package-action@v0.3.3
+        uses: durandtibo/pip-install-package-action@v0.3.4
         with:
           package-name: 'objectory'
           package-version: ${{ matrix.objectory-version }}
@@ -387,7 +387,7 @@ jobs:
           make install
 
       - name: Install valid package version
-        uses: durandtibo/pip-install-package-action@v0.3.3
+        uses: durandtibo/pip-install-package-action@v0.3.4
         with:
           package-name: 'polars'
           package-version: ${{ matrix.polars-version }}
@@ -447,7 +447,7 @@ jobs:
           make install
 
       - name: Install valid package version
-        uses: durandtibo/pip-install-package-action@v0.3.3
+        uses: durandtibo/pip-install-package-action@v0.3.4
         with:
           package-name: 'pyarrow'
           package-version: ${{ matrix.pyarrow-version }}
@@ -495,7 +495,7 @@ jobs:
           make install
 
       - name: Install valid package version
-        uses: durandtibo/pip-install-package-action@v0.3.3
+        uses: durandtibo/pip-install-package-action@v0.3.4
         with:
           package-name: 'scipy'
           package-version: ${{ matrix.scipy-version }}
@@ -548,7 +548,7 @@ jobs:
           make install
 
       - name: Install valid package version
-        uses: durandtibo/pip-install-package-action@v0.3.3
+        uses: durandtibo/pip-install-package-action@v0.3.4
         with:
           package-name: 'clickhouse-connect'
           package-version: ${{ matrix.clickhouse-connect-version }}
@@ -596,7 +596,7 @@ jobs:
           make install
 
       - name: Install valid package version
-        uses: durandtibo/pip-install-package-action@v0.3.3
+        uses: durandtibo/pip-install-package-action@v0.3.4
         with:
           package-name: 'colorlog'
           package-version: ${{ matrix.colorlog-version }}
@@ -644,7 +644,7 @@ jobs:
           make install
 
       - name: Install valid package version
-        uses: durandtibo/pip-install-package-action@v0.3.3
+        uses: durandtibo/pip-install-package-action@v0.3.4
         with:
           package-name: 'hya'
           package-version: ${{ matrix.hya-version }}
@@ -692,7 +692,7 @@ jobs:
           make install
 
       - name: Install valid package version
-        uses: durandtibo/pip-install-package-action@v0.3.3
+        uses: durandtibo/pip-install-package-action@v0.3.4
         with:
           package-name: 'markdown'
           package-version: ${{ matrix.markdown-version }}
@@ -740,7 +740,7 @@ jobs:
           make install
 
       - name: Install valid package version
-        uses: durandtibo/pip-install-package-action@v0.3.3
+        uses: durandtibo/pip-install-package-action@v0.3.4
         with:
           package-name: 'tqdm'
           package-version: ${{ matrix.tqdm-version }}
