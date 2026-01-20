@@ -345,8 +345,7 @@ def create_temporal_null_table(
     rows = []
     for label, null, total in zip(labels, nulls, totals):
         rows.append(create_temporal_null_table_row(label=label, num_nulls=null, total=total))
-    return Template(
-        """<details>
+    return Template("""<details>
     <summary>[show statistics per temporal period]</summary>
 
     <p>The following table shows some statistics for each period.
@@ -368,8 +367,7 @@ def create_temporal_null_table(
         </tbody>
     </table>
 </details>
-"""
-    ).render({"rows": "\n".join(rows), "period": period})
+""").render({"rows": "\n".join(rows), "period": period})
 
 
 def create_temporal_null_table_row(label: str, num_nulls: int, total: int) -> str:
@@ -393,16 +391,14 @@ def create_temporal_null_table_row(label: str, num_nulls: int, total: int) -> st
     ```
     """
     num_non_nulls = total - num_nulls
-    return Template(
-        """<tr>
+    return Template("""<tr>
     <th>{{label}}</th>
     <td {{num_style}}>{{num_nulls}}</td>
     <td {{num_style}}>{{num_non_nulls}}</td>
     <td {{num_style}}>{{total}}</td>
     <td {{num_style}}>{{num_nulls_pct}}</td>
     <td {{num_style}}>{{num_non_nulls_pct}}</td>
-</tr>"""
-    ).render(
+</tr>""").render(
         {
             "num_style": 'style="text-align: right;"',
             "label": label,

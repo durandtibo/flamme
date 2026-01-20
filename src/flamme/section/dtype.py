@@ -161,8 +161,7 @@ def create_table(dtypes: dict[str, pl.DataType], types: dict[str, set]) -> str:
     rows = "\n".join(
         [create_table_row(column=col, types=types[col], dtype=dtypes[col]) for col in columns]
     )
-    return Template(
-        """<table class="table table-hover table-responsive w-auto" >
+    return Template("""<table class="table table-hover table-responsive w-auto" >
     <thead class="thead table-group-divider">
         <tr>
             <th>column</th>
@@ -175,8 +174,7 @@ def create_table(dtypes: dict[str, pl.DataType], types: dict[str, set]) -> str:
         <tr class="table-group-divider"></tr>
     </tbody>
 </table>
-"""
-    ).render({"rows": rows})
+""").render({"rows": rows})
 
 
 def create_table_row(column: str, dtype: pl.DataType, types: set[type]) -> str:
@@ -201,10 +199,8 @@ def create_table_row(column: str, dtype: pl.DataType, types: set[type]) -> str:
     ```
     """
     types = sorted([str(t).replace("<", "&lt;").replace(">", "&gt;") for t in types])
-    return Template(
-        """<tr>
+    return Template("""<tr>
     <th>{{column}}</th>
     <td>{{dtype}}</td>
     <td>{{types}}</td>
-</tr>"""
-    ).render({"column": column, "dtype": dtype, "types": ", ".join(types)})
+</tr>""").render({"column": column, "dtype": dtype, "types": ", ".join(types)})
