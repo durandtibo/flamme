@@ -406,8 +406,7 @@ def create_stats_table(stats: dict, column: str) -> str:
 
     ```
     """
-    return Template(
-        """<details>
+    return Template("""<details>
     <summary>[show statistics]</summary>
 
     <p>The following table shows some statistics about the distribution for column {{column}}.
@@ -442,8 +441,7 @@ def create_stats_table(stats: dict, column: str) -> str:
         </tbody>
     </table>
 </details>
-"""
-    ).render(
+""").render(
         {
             "column": column,
             "num_style": 'style="text-align: right;"',

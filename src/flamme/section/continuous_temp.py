@@ -352,8 +352,7 @@ def create_temporal_table(frame: pl.DataFrame, column: str, dt_column: str, peri
     stats = compute_temporal_stats(frame=frame, column=column, dt_column=dt_column, period=period)
 
     rows = [create_temporal_table_row(stat) for stat in stats.to_dicts()]
-    return Template(
-        """<details>
+    return Template("""<details>
     <summary>[show statistics per temporal period]</summary>
 
     <p>The following table shows some statistics for each period of column {{column}}.
@@ -384,8 +383,7 @@ def create_temporal_table(frame: pl.DataFrame, column: str, dt_column: str, peri
         </tbody>
     </table>
 </details>
-"""
-    ).render({"rows": "\n".join(rows), "column": column, "period": period})
+""").render({"rows": "\n".join(rows), "column": column, "period": period})
 
 
 def create_temporal_table_row(stats: dict) -> str:
@@ -433,8 +431,7 @@ def create_temporal_table_row(stats: dict) -> str:
             return float("nan")
         return value
 
-    return Template(
-        """<tr>
+    return Template("""<tr>
     <th>{{step}}</th>
     <td {{num_style}}>{{count}}</td>
     <td {{num_style}}>{{mean}}</td>
@@ -450,8 +447,7 @@ def create_temporal_table_row(stats: dict) -> str:
     <td {{num_style}}>{{q95}}</td>
     <td {{num_style}}>{{q99}}</td>
     <td {{num_style}}>{{max}}</td>
-</tr>"""
-    ).render(
+</tr>""").render(
         {
             "num_style": 'style="text-align: right;"',
             "step": stats["step"],

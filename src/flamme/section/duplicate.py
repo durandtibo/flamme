@@ -187,8 +187,7 @@ def create_duplicate_table(num_rows: int, num_unique_rows: int) -> str:
     num_duplicated_rows = num_rows - num_unique_rows
     pct_unique_rows = num_unique_rows / num_rows if num_rows else float("nan")
     pct_duplicated_rows = 1.0 - pct_unique_rows
-    return Template(
-        """
+    return Template("""
 <table class="table table-hover table-responsive w-auto" >
 <thead class="thead table-group-divider">
     <tr>
@@ -206,8 +205,7 @@ def create_duplicate_table(num_rows: int, num_unique_rows: int) -> str:
     <tr class="table-group-divider"></tr>
 </tbody>
 </table>
-"""
-    ).render(
+""").render(
         {
             "num_style": 'style="text-align: right;"',
             "num_rows": f"{num_rows:,}",

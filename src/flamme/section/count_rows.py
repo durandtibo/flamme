@@ -302,8 +302,7 @@ def create_temporal_count_table(frame: pl.DataFrame, dt_column: str, period: str
         create_temporal_count_table_row(label=label, num_rows=num_rows)
         for label, num_rows in zip(labels, counts)
     ]
-    return Template(
-        """<details>
+    return Template("""<details>
     <summary>[show statistics per temporal period]</summary>
 
     <p>The following table shows some statistics for each period.
@@ -321,8 +320,7 @@ def create_temporal_count_table(frame: pl.DataFrame, dt_column: str, period: str
         </tbody>
     </table>
 </details>
-"""
-    ).render({"rows": "\n".join(rows), "period": period})
+""").render({"rows": "\n".join(rows), "period": period})
 
 
 def create_temporal_count_table_row(label: str, num_rows: int) -> str:

@@ -253,15 +253,13 @@ def create_histogram_section(
         yscale=yscale,
         figsize=figsize,
     )
-    return Template(
-        r"""<p style="margin-top: 1rem;">
+    return Template(r"""<p style="margin-top: 1rem;">
 <b>Distribution of values in column {{column}}</b>
 
 <p>The values in the figure below are sorted by decreasing order of number of occurrences.
 
 {{figure}}
-"""
-    ).render({"figure": figure2html(fig, close_fig=True), "column": column})
+""").render({"figure": figure2html(fig, close_fig=True), "column": column})
 
 
 def create_histogram(
@@ -335,8 +333,7 @@ def create_table(
     if sum(counter.values()) == 0:
         return "<span>&#9888;</span> No table is generated because the column is empty"
 
-    return Template(
-        """<details>
+    return Template("""<details>
     <summary>[show head and tail values]</summary>
 
     <ul>
@@ -358,8 +355,7 @@ def create_table(
       </div>
     </div>
 </details>
-"""
-    ).render(
+""").render(
         {
             "max_values": len(counter.most_common(max_rows)),
             "table_head": create_frequent_values_table(counter=counter, top=max_rows),
