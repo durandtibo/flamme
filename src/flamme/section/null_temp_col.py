@@ -303,14 +303,12 @@ def create_temporal_null_figure(
         frame=frame, columns=columns, dt_column=dt_column, period=period, figsize=figsize
     )
     figures = add_column_to_figure(columns=columns, figures=figures)
-    return Template(
-        """<div class="container-fluid text-center">
+    return Template("""<div class="container-fluid text-center">
   <div class="row align-items-start">
     {{columns}}
   </div>
 </div>
-"""
-    ).render({"columns": "\n".join(split_figures_by_column(figures=figures, ncols=ncols))})
+""").render({"columns": "\n".join(split_figures_by_column(figures=figures, ncols=ncols))})
 
 
 def create_temporal_null_figures(
@@ -504,8 +502,7 @@ def create_table_section(
             frame=frame, column=column, dt_column=dt_column, period=period
         )
         tables.append(f'<p style="margin-top: 1rem;">\n\n{table}\n')
-    return Template(
-        """<details>
+    return Template("""<details>
     <summary>[show statistics per temporal period]</summary>
 
     <p style="margin-top: 1rem;">
@@ -513,8 +510,7 @@ def create_table_section(
 
     {{tables}}
 </details>
-"""
-    ).render({"tables": "\n".join(tables)})
+""").render({"tables": "\n".join(tables)})
 
 
 def create_temporal_null_table(
@@ -575,8 +571,7 @@ def create_temporal_null_table(
         create_temporal_null_table_row(label=label, null=null, total=total)
         for label, null, total in zip(labels, nulls, totals)
     ]
-    return Template(
-        """<table class="table table-hover table-responsive w-auto" >
+    return Template("""<table class="table table-hover table-responsive w-auto" >
     <thead class="thead table-group-divider">
         <tr>
             <th colspan="6" style="text-align: center">column: {{column}}</th>
@@ -595,8 +590,7 @@ def create_temporal_null_table(
         <tr class="table-group-divider"></tr>
     </tbody>
 </table>
-"""
-    ).render({"rows": "\n".join(rows), "column": column, "period": period})
+""").render({"rows": "\n".join(rows), "column": column, "period": period})
 
 
 def create_temporal_null_table_row(label: str, null: int, total: int) -> str:
@@ -620,16 +614,14 @@ def create_temporal_null_table_row(label: str, null: int, total: int) -> str:
     ```
     """
     non_null = total - null
-    return Template(
-        """<tr>
+    return Template("""<tr>
     <th>{{label}}</th>
     <td {{num_style}}>{{null}}</td>
     <td {{num_style}}>{{non_null}}</td>
     <td {{num_style}}>{{total}}</td>
     <td {{num_style}}>{{nulls_pct}}</td>
     <td {{num_style}}>{{non_null_pct}}</td>
-</tr>"""
-    ).render(
+</tr>""").render(
         {
             "num_style": 'style="text-align: right;"',
             "label": label,

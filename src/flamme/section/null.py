@@ -317,8 +317,7 @@ def create_table(frame: pl.DataFrame) -> str:
             frame["total"],
         )
     ]
-    return Template(
-        """<table class="table table-hover table-responsive w-auto" >
+    return Template("""<table class="table table-hover table-responsive w-auto" >
     <thead class="thead table-group-divider">
         <tr>
             <th>column</th>
@@ -332,8 +331,7 @@ def create_table(frame: pl.DataFrame) -> str:
         <tr class="table-group-divider"></tr>
     </tbody>
 </table>
-"""
-    ).render({"rows": "\n".join(rows)})
+""").render({"rows": "\n".join(rows)})
 
 
 def create_table_row(column: str, null_count: int, total_count: int) -> str:
@@ -358,14 +356,12 @@ def create_table_row(column: str, null_count: int, total_count: int) -> str:
     """
     pct = null_count / total_count if total_count > 0 else float("nan")
     pct_color = pct if total_count > 0 else 0
-    return Template(
-        """<tr>
+    return Template("""<tr>
     <th style="background-color: rgba(0, 191, 255, {{null_pct}})">{{column}}</th>
     <td {{num_style}}>{{null_pct}}</td>
     <td {{num_style}}>{{null_count}}</td>
     <td {{num_style}}>{{total_count}}</td>
-</tr>"""
-    ).render(
+</tr>""").render(
         {
             "num_style": (
                 f'style="text-align: right; background-color: rgba(0, 191, 255, {pct_color})"'

@@ -174,8 +174,7 @@ def create_frequent_values_table(counter: Counter, top: int = 100, reverse: bool
     for value, count in most_common:
         cumcount += count
         rows.append(create_table_row(value=value, count=count, total=total, cumcount=cumcount))
-    return Template(
-        """<table class="table table-hover table-responsive w-auto" >
+    return Template("""<table class="table table-hover table-responsive w-auto" >
     <thead class="thead table-group-divider">
         <tr>
             <th>value</th>
@@ -189,8 +188,7 @@ def create_frequent_values_table(counter: Counter, top: int = 100, reverse: bool
         <tr class="table-group-divider"></tr>
     </tbody>
 </table>
-"""
-    ).render({"rows": "\n".join(rows)})
+""").render({"rows": "\n".join(rows)})
 
 
 def create_table_row(value: str, count: int, total: int, cumcount: int) -> str:
@@ -216,14 +214,12 @@ def create_table_row(value: str, count: int, total: int, cumcount: int) -> str:
     """
     pct = 100 * count / total if total > 0 else float("nan")
     cum_percentage = 100 * cumcount / total if total > 0 else float("nan")
-    return Template(
-        """<tr>
+    return Template("""<tr>
     <th>{{value}}</th>
     <td {{num_style}}>{{count}}</td>
     <td {{num_style}}>{{percentage}}</td>
     <td {{num_style}}>{{cum_percentage}}</td>
-</tr>"""
-    ).render(
+</tr>""").render(
         {
             "num_style": 'style="text-align: right;"',
             "value": value,
