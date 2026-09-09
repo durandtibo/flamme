@@ -188,23 +188,24 @@ def create_section_template() -> str:
 
     ```
     """
-    return """<h{{depth}} id="{{id}}">{{section}} {{title}} </h{{depth}}>
+    return """<h{{depth}} id="{{id}}">{{section}} {{title}}
+           </h{{depth}}>
 
-{{go_to_top}}
+           {{go_to_top}}
 
-<p style="margin-top: 1rem;">
-This section analyzes the temporal distribution of column <em>{{column}}</em>
-by using the column <em>{{dt_column}}</em>.
-The first figure shows the number of occurrences for each value in each temporal window,
-and the second figure shows the proportion for each value in each temporal window.
+           <p style="margin-top: 1rem;"> This section analyzes the
+           temporal distribution of column <em>{{column}}</em> by using
+           the column <em>{{dt_column}}</em>. The first figure shows the
+           number of occurrences for each value in each temporal window,
+           and the second figure shows the proportion for each value in
+           each temporal window.
 
-{{figure_occurrence}}
-{{figure_proportion}}
+           {{figure_occurrence}} {{figure_proportion}}
 
-{{table}}
+           {{table}}
 
-<p style="margin-top: 1rem;">
-"""
+           <p style="margin-top: 1rem;">
+           """
 
 
 def create_temporal_figure(
