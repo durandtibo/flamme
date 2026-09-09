@@ -181,20 +181,21 @@ def create_section_template() -> str:
 
     ```
     """
-    return """<h{{depth}} id="{{id}}">{{section}} {{title}} </h{{depth}}>
+    return """<h{{depth}} id="{{id}}">{{section}} {{title}}
+           </h{{depth}}>
 
-{{go_to_top}}
+           {{go_to_top}}
 
-<p style="margin-top: 1rem;">
-This section analyzes the number of rows per temporal window.
-The column <em>{{dt_column}}</em> is used as the temporal column.
+           <p style="margin-top: 1rem;"> This section analyzes the
+           number of rows per temporal window. The column
+           <em>{{dt_column}}</em> is used as the temporal column.
 
-{{figure}}
+           {{figure}}
 
-{{table}}
+           {{table}}
 
-<p style="margin-top: 1rem;">
-"""
+           <p style="margin-top: 1rem;">
+           """
 
 
 def create_temporal_count_figure(
@@ -302,27 +303,18 @@ def create_temporal_count_table(frame: pl.DataFrame, dt_column: str, period: str
         create_temporal_count_table_row(label=label, num_rows=num_rows)
         for label, num_rows in zip(labels, counts)
     ]
-    return Template(
-        """<details>
-    <summary>[show statistics per temporal period]</summary>
+    return Template("""<details> <summary>[show statistics per temporal
+        period]</summary>
 
-    <p>The following table shows some statistics for each period.
+        <p>The following table shows some statistics for each period.
 
-    <table class="table table-hover table-responsive w-auto" >
-        <thead class="thead table-group-divider">
-            <tr>
-                <th>period</th>
-                <th>number of rows</th>
-            </tr>
-        </thead>
-        <tbody class="tbody table-group-divider">
-            {{rows}}
-            <tr class="table-group-divider"></tr>
-        </tbody>
-    </table>
-</details>
-"""
-    ).render({"rows": "\n".join(rows), "period": period})
+            <table class="table table-hover table-responsive w-auto" >
+        <thead class="thead table-group-divider">             <tr>
+        <th>period</th>                 <th>number of rows</th>
+        </tr>         </thead>         <tbody class="tbody table-group-
+        divider">             {{rows}}             <tr class="table-
+        group-divider"></tr>         </tbody>     </table> </details>
+        """).render({"rows": "\n".join(rows), "period": period})
 
 
 def create_temporal_count_table_row(label: str, num_rows: int) -> str:

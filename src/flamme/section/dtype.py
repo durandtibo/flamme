@@ -115,21 +115,21 @@ def create_section_template() -> str:
 
     ```
     """
-    return """<h{{depth}} id="{{id}}">{{section}} {{title}} </h{{depth}}>
+    return """<h{{depth}} id="{{id}}">{{section}} {{title}}
+           </h{{depth}}>
 
-{{go_to_top}}
+           {{go_to_top}}
 
-<p style="margin-top: 1rem;">
-This section analyzes the values types for each column.
+           <p style="margin-top: 1rem;"> This section analyzes the
+           values types for each column.
 
-<ul>
-  <li> <b>data type</b>: is the column data type </li>
-  <li> <b>types</b>: are the real object types for the objects in the column.
-  A column can contain multiple types. </li>
-</ul>
+           <ul>   <li> <b>data type</b>: is the column data type </li>
+           <li> <b>types</b>: are the real object types for the objects
+           in the column.   A column can contain multiple types. </li>
+           </ul>
 
-{{table}}
-"""
+           {{table}}
+           """
 
 
 def create_table(dtypes: dict[str, pl.DataType], types: dict[str, set]) -> str:
@@ -161,22 +161,11 @@ def create_table(dtypes: dict[str, pl.DataType], types: dict[str, set]) -> str:
     rows = "\n".join(
         [create_table_row(column=col, types=types[col], dtype=dtypes[col]) for col in columns]
     )
-    return Template(
-        """<table class="table table-hover table-responsive w-auto" >
-    <thead class="thead table-group-divider">
-        <tr>
-            <th>column</th>
-            <th>data type</th>
-            <th>types</th>
-        </tr>
-    </thead>
-    <tbody class="tbody table-group-divider">
-        {{rows}}
-        <tr class="table-group-divider"></tr>
-    </tbody>
-</table>
-"""
-    ).render({"rows": rows})
+    return Template("""<table class="table table-hover table-responsive w-auto" >
+        <thead class="thead table-group-divider"> <tr> <th>column</th>
+        <th>data type</th> <th>types</th> </tr> </thead> <tbody
+        class="tbody table-group-divider"> {{rows}} <tr class="table-
+        group-divider"></tr> </tbody> </table>""").render({"rows": rows})
 
 
 def create_table_row(column: str, dtype: pl.DataType, types: set[type]) -> str:
@@ -201,10 +190,7 @@ def create_table_row(column: str, dtype: pl.DataType, types: set[type]) -> str:
     ```
     """
     types = sorted([str(t).replace("<", "&lt;").replace(">", "&gt;") for t in types])
-    return Template(
-        """<tr>
-    <th>{{column}}</th>
-    <td>{{dtype}}</td>
-    <td>{{types}}</td>
-</tr>"""
-    ).render({"column": column, "dtype": dtype, "types": ", ".join(types)})
+    return Template("""<tr> <th>{{column}}</th> <td>{{dtype}}</td>
+        <td>{{types}}</td> </tr>""").render(
+        {"column": column, "dtype": dtype, "types": ", ".join(types)}
+    )

@@ -217,35 +217,34 @@ def create_section_template() -> str:
 
     ```
     """
-    return """<h{{depth}} id="{{id}}">{{section}} {{title}} </h{{depth}}>
+    return """<h{{depth}} id="{{id}}">{{section}} {{title}}
+           </h{{depth}}>
 
-{{go_to_top}}
+           {{go_to_top}}
 
-<p style="margin-top: 1rem;">
-This section analyzes the discrete distribution of values for column <em>{{column}}</em>.
+           <p style="margin-top: 1rem;"> This section analyzes the
+           discrete distribution of values for column
+           <em>{{column}}</em>.
 
-<ul>
-  <li> total values: {{total_values}} </li>
-  <li> number of unique values: {{unique_values}} </li>
-  <li> number of null values: {{null_values}} / {{total_values}} ({{null_values_pct}}%) </li>
-</ul>
+           <ul>   <li> total values: {{total_values}} </li>   <li>
+           number of unique values: {{unique_values}} </li>   <li>
+           number of null values: {{null_values}} / {{total_values}}
+           ({{null_values_pct}}%) </li> </ul>
 
-<p style="margin-top: 1rem;">
-<b> Analysis of the distribution </b>
+           <p style="margin-top: 1rem;"> <b> Analysis of the
+           distribution </b>
 
-{{full_histogram}}
-{{full_boxplot}}
-{{table}}
+           {{full_histogram}} {{full_boxplot}} {{table}}
 
-<p style="margin-top: 1rem;">
+           <p style="margin-top: 1rem;">
 
-<p style="margin-top: 1rem;">
-<b> Analysis of distribution in the inter-quartile range (IQR) </b>
+           <p style="margin-top: 1rem;"> <b> Analysis of distribution in
+           the inter-quartile range (IQR) </b>
 
-{{iqr_histogram}}
+           {{iqr_histogram}}
 
-<p style="margin-top: 1rem;">
-"""
+           <p style="margin-top: 1rem;">
+           """
 
 
 def create_histogram_range_figure(

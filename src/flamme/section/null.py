@@ -198,47 +198,48 @@ def create_section_template() -> str:
 
     ```
     """
-    return """<h{{depth}} id="{{id}}">{{section}} {{title}} </h{{depth}}>
+    return """<h{{depth}} id="{{id}}">{{section}} {{title}}
+           </h{{depth}}>
 
-{{go_to_top}}
+           {{go_to_top}}
 
-<p style="margin-top: 1rem;">
-This section analyzes the number and proportion of null values for the {{num_columns}}
-columns: <em>{{columns}}</em>.
+           <p style="margin-top: 1rem;">
+           This section analyzes the number and proportion of null values for the {{num_columns}}
+           columns: <em>{{columns}}</em>.
 
-<p>The columns are sorted by ascending order of number of null values in the following histogram.
+           <p>The columns are sorted by ascending order of number of null values in the following histogram.
 
-{{bar_figure}}
+           {{bar_figure}}
 
-<details>
-    <summary>[show statistics per column]</summary>
+           <details>
+               <summary>[show statistics per column]</summary>
 
-    <p style="margin-top: 1rem;">
-    The following tables show the number and proportion of null values for the {{num_columns}}
-    columns.
-    The background color of the row indicates the proportion of missing values:
-    dark blues indicates more missing values than light blues.
+               <p style="margin-top: 1rem;">
+               The following tables show the number and proportion of null values for the {{num_columns}}
+               columns.
+               The background color of the row indicates the proportion of missing values:
+               dark blues indicates more missing values than light blues.
 
-    <div class="container-fluid">
-        <div class="row align-items-start">
-            <div class="col align-self-center">
-                <p><b>Columns sorted by alphabetical order</b></p>
+               <div class="container-fluid">
+                   <div class="row align-items-start">
+                       <div class="col align-self-center">
+                           <p><b>Columns sorted by alphabetical order</b></p>
 
-                {{table_alpha}}
+                           {{table_alpha}}
 
-            </div>
-            <div class="col">
-                <p><b>Columns sorted by ascending order of missing values</b></p>
+                       </div>
+                       <div class="col">
+                           <p><b>Columns sorted by ascending order of missing values</b></p>
 
-                {{table_sort}}
+                           {{table_sort}}
 
-            </div>
-        </div>
-    </div>
-</details>
+                       </div>
+                   </div>
+               </div>
+           </details>
 
-<p style="margin-top: 1rem;">
-"""
+           <p style="margin-top: 1rem;">
+           """
 
 
 def create_bar_figure(
@@ -317,23 +318,11 @@ def create_table(frame: pl.DataFrame) -> str:
             frame["total"],
         )
     ]
-    return Template(
-        """<table class="table table-hover table-responsive w-auto" >
-    <thead class="thead table-group-divider">
-        <tr>
-            <th>column</th>
-            <th>null pct</th>
-            <th>null count</th>
-            <th>total count</th>
-        </tr>
-    </thead>
-    <tbody class="tbody table-group-divider">
-        {{rows}}
-        <tr class="table-group-divider"></tr>
-    </tbody>
-</table>
-"""
-    ).render({"rows": "\n".join(rows)})
+    return Template("""<table class="table table-hover table-responsive w-auto" >
+        <thead class="thead table-group-divider"> <tr> <th>column</th>
+        <th>null pct</th> <th>null count</th> <th>total count</th> </tr>
+        </thead> <tbody class="tbody table-group-divider"> {{rows}} <tr
+        class="table-group-divider"></tr> </tbody> </table>""").render({"rows": "\n".join(rows)})
 
 
 def create_table_row(column: str, null_count: int, total_count: int) -> str:
@@ -358,14 +347,11 @@ def create_table_row(column: str, null_count: int, total_count: int) -> str:
     """
     pct = null_count / total_count if total_count > 0 else float("nan")
     pct_color = pct if total_count > 0 else 0
-    return Template(
-        """<tr>
-    <th style="background-color: rgba(0, 191, 255, {{null_pct}})">{{column}}</th>
-    <td {{num_style}}>{{null_pct}}</td>
-    <td {{num_style}}>{{null_count}}</td>
-    <td {{num_style}}>{{total_count}}</td>
-</tr>"""
-    ).render(
+    return Template("""<tr> <th style="background-color: rgba(0, 191, 255,
+        {{null_pct}})">{{column}}</th> <td
+        {{num_style}}>{{null_pct}}</td> <td
+        {{num_style}}>{{null_count}}</td> <td
+        {{num_style}}>{{total_count}}</td> </tr>""").render(
         {
             "num_style": (
                 f'style="text-align: right; background-color: rgba(0, 191, 255, {pct_color})"'
