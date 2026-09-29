@@ -150,19 +150,19 @@ def create_section_template() -> str:
 
     ```
     """
-    return """
-<h{{depth}} id="{{id}}">{{section}} {{title}} </h{{depth}}>
+    return """<h{{depth}} id="{{id}}">{{section}} {{title}}
+           </h{{depth}}>
 
-{{go_to_top}}
+           {{go_to_top}}
 
-<p style="margin-top: 1rem;">
-This section shows the number of unique and duplicated rows when considering the following
-{{num_columns}} columns: <em>{{columns}}</em>.
+           <p style="margin-top: 1rem;"> This section shows the number
+           of unique and duplicated rows when considering the following
+           {{num_columns}} columns: <em>{{columns}}</em>.
 
-{{table}}
+           {{table}}
 
-<p style="margin-top: 1rem;">
-"""
+           <p style="margin-top: 1rem;">
+           """
 
 
 def create_duplicate_table(num_rows: int, num_unique_rows: int) -> str:
@@ -187,27 +187,15 @@ def create_duplicate_table(num_rows: int, num_unique_rows: int) -> str:
     num_duplicated_rows = num_rows - num_unique_rows
     pct_unique_rows = num_unique_rows / num_rows if num_rows else float("nan")
     pct_duplicated_rows = 1.0 - pct_unique_rows
-    return Template(
-        """
-<table class="table table-hover table-responsive w-auto" >
-<thead class="thead table-group-divider">
-    <tr>
-        <th>number of rows</th>
-        <th>number of unique rows</th>
-        <th>number of duplicated rows</th>
-    </tr>
-</thead>
-<tbody class="tbody table-group-divider">
-    <tr>
-        <td {{num_style}}>{{num_rows}}</td>
-        <td {{num_style}}>{{num_unique_rows}} ({{pct_unique_rows}}%)</td>
-        <td {{num_style}}>{{num_duplicated_rows}} ({{pct_duplicated_rows}}%)</td>
-    </tr>
-    <tr class="table-group-divider"></tr>
-</tbody>
-</table>
-"""
-    ).render(
+    return Template("""<table class="table table-hover table-responsive w-auto" >
+        <thead class="thead table-group-divider"> <tr> <th>number of
+        rows</th> <th>number of unique rows</th> <th>number of
+        duplicated rows</th> </tr> </thead> <tbody class="tbody table-
+        group-divider"> <tr> <td {{num_style}}>{{num_rows}}</td> <td
+        {{num_style}}>{{num_unique_rows}} ({{pct_unique_rows}}%)</td>
+        <td {{num_style}}>{{num_duplicated_rows}}
+        ({{pct_duplicated_rows}}%)</td> </tr> <tr class="table-group-
+        divider"></tr> </tbody> </table>""").render(
         {
             "num_style": 'style="text-align: right;"',
             "num_rows": f"{num_rows:,}",

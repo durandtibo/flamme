@@ -212,20 +212,21 @@ def create_section_template() -> str:
 
     ```
     """
-    return """<h{{depth}} id="{{id}}">{{section}} {{title}} </h{{depth}}>
+    return """<h{{depth}} id="{{id}}">{{section}} {{title}}
+           </h{{depth}}>
 
-{{go_to_top}}
+           {{go_to_top}}
 
-<p style="margin-top: 1rem;">
-This section analyzes the temporal distribution of column <em>{{column}}</em>
-by using the column <em>{{dt_column}}</em>.
+           <p style="margin-top: 1rem;"> This section analyzes the
+           temporal distribution of column <em>{{column}}</em> by using
+           the column <em>{{dt_column}}</em>.
 
-{{figure}}
+           {{figure}}
 
-{{table}}
+           {{table}}
 
-<p style="margin-top: 1rem;">
-"""
+           <p style="margin-top: 1rem;">
+           """
 
 
 def create_temporal_figure(
@@ -352,40 +353,26 @@ def create_temporal_table(frame: pl.DataFrame, column: str, dt_column: str, peri
     stats = compute_temporal_stats(frame=frame, column=column, dt_column=dt_column, period=period)
 
     rows = [create_temporal_table_row(stat) for stat in stats.to_dicts()]
-    return Template(
-        """<details>
-    <summary>[show statistics per temporal period]</summary>
+    return Template("""<details> <summary>[show statistics per temporal
+        period]</summary>
 
-    <p>The following table shows some statistics for each period of column {{column}}.
+        <p>The following table shows some statistics for each period of
+        column {{column}}.
 
-    <table class="table table-hover table-responsive w-auto" >
-        <thead class="thead table-group-divider">
-            <tr>
-                <th>step</th>
-                <th>count</th>
-                <th>mean</th>
-                <th>std</th>
-                <th>min</th>
-                <th>quantile 1%</th>
-                <th>quantile 5%</th>
-                <th>quantile 10%</th>
-                <th>quantile 25%</th>
-                <th>median</th>
-                <th>quantile 75%</th>
-                <th>quantile 90%</th>
-                <th>quantile 95%</th>
-                <th>quantile 99%</th>
-                <th>max</th>
-            </tr>
-        </thead>
-        <tbody class="tbody table-group-divider">
-            {{rows}}
-            <tr class="table-group-divider"></tr>
-        </tbody>
-    </table>
-</details>
-"""
-    ).render({"rows": "\n".join(rows), "column": column, "period": period})
+            <table class="table table-hover table-responsive w-auto" >
+        <thead class="thead table-group-divider">             <tr>
+        <th>step</th>                 <th>count</th>
+        <th>mean</th>                 <th>std</th>
+        <th>min</th>                 <th>quantile 1%</th>
+        <th>quantile 5%</th>                 <th>quantile 10%</th>
+        <th>quantile 25%</th>                 <th>median</th>
+        <th>quantile 75%</th>                 <th>quantile 90%</th>
+        <th>quantile 95%</th>                 <th>quantile 99%</th>
+        <th>max</th>             </tr>         </thead>         <tbody
+        class="tbody table-group-divider">             {{rows}}
+        <tr class="table-group-divider"></tr>         </tbody>
+        </table> </details>
+        """).render({"rows": "\n".join(rows), "column": column, "period": period})
 
 
 def create_temporal_table_row(stats: dict) -> str:
@@ -433,8 +420,7 @@ def create_temporal_table_row(stats: dict) -> str:
             return float("nan")
         return value
 
-    return Template(
-        """<tr>
+    return Template("""<tr>
     <th>{{step}}</th>
     <td {{num_style}}>{{count}}</td>
     <td {{num_style}}>{{mean}}</td>
@@ -450,8 +436,7 @@ def create_temporal_table_row(stats: dict) -> str:
     <td {{num_style}}>{{q95}}</td>
     <td {{num_style}}>{{q99}}</td>
     <td {{num_style}}>{{max}}</td>
-</tr>"""
-    ).render(
+</tr>""").render(
         {
             "num_style": 'style="text-align: right;"',
             "step": stats["step"],
