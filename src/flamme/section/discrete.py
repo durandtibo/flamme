@@ -187,25 +187,25 @@ def create_section_template() -> str:
 
     ```
     """
-    return """<h{{depth}} id="{{id}}">{{section}} {{title}} </h{{depth}}>
+    return """<h{{depth}} id="{{id}}">{{section}} {{title}}
+           </h{{depth}}>
 
-{{go_to_top}}
+           {{go_to_top}}
 
-<p style="margin-top: 1rem;">
-This section analyzes the discrete distribution of values for column <em>{{column}}</em>.
+           <p style="margin-top: 1rem;"> This section analyzes the
+           discrete distribution of values for column
+           <em>{{column}}</em>.
 
-<ul>
-<li> <b>total values:</b> {{total_values}} </li>
-<li> <b>number of unique values:</b> {{unique_values}} </li>
-<li> <b>number of null values:</b> {{null_values}} / {{total_values}} ({{null_values_pct}}%) </li>
-<li> <b>data type:</b> <em>{{dtype}}</em> </li>
-</ul>
+           <ul> <li> <b>total values:</b> {{total_values}} </li> <li>
+           <b>number of unique values:</b> {{unique_values}} </li> <li>
+           <b>number of null values:</b> {{null_values}} /
+           {{total_values}} ({{null_values_pct}}%) </li> <li> <b>data
+           type:</b> <em>{{dtype}}</em> </li> </ul>
 
-{{figure}}
-{{table}}
+           {{figure}} {{table}}
 
-<p style="margin-top: 1rem;">
-"""
+           <p style="margin-top: 1rem;">
+           """
 
 
 def create_histogram_section(
@@ -253,15 +253,14 @@ def create_histogram_section(
         yscale=yscale,
         figsize=figsize,
     )
-    return Template(
-        r"""<p style="margin-top: 1rem;">
-<b>Distribution of values in column {{column}}</b>
+    return Template(r"""<p style="margin-top: 1rem;"> <b>Distribution of values in
+        column {{column}}</b>
 
-<p>The values in the figure below are sorted by decreasing order of number of occurrences.
+        <p>The values in the figure below are sorted by decreasing order
+        of number of occurrences.
 
-{{figure}}
-"""
-    ).render({"figure": figure2html(fig, close_fig=True), "column": column})
+        {{figure}}
+        """).render({"figure": figure2html(fig, close_fig=True), "column": column})
 
 
 def create_histogram(
@@ -334,32 +333,23 @@ def create_table(
     """
     if sum(counter.values()) == 0:
         return "<span>&#9888;</span> No table is generated because the column is empty"
+    return Template("""<details> <summary>[show head and tail values]</summary>
 
-    return Template(
-        """<details>
-    <summary>[show head and tail values]</summary>
+        <ul>   <li> <b>count</b>: is the number of occurrences of the
+        value </li>   <li> <b>percentage</b>: is the number of
+        occurrences the value divided by the total number of occurrences
+        </li>   <li> <b>cumulative percentage</b>: is the sum of the
+        percentage of occurrence for the value plus all the previous
+        values in the table. </li> </ul>
 
-    <ul>
-      <li> <b>count</b>: is the number of occurrences of the value </li>
-      <li> <b>percentage</b>: is the number of occurrences the value divided by the total number of occurrences </li>
-      <li> <b>cumulative percentage</b>: is the sum of the percentage of occurrence for the value plus all the previous values in the table. </li>
-    </ul>
-
-    <div class="row">
-      <div class="col">
-        <p style="margin-top: 1rem;">
-        <b>Head: {{max_values}} most common values in column <em>{{column}}</em></b>
-        {{table_head}}
-      </div>
-      <div class="col">
-        <p style="margin-top: 1rem;">
-        <b>Tail: {{max_values}} least common values in column <em>{{column}}</em></b>
-        {{table_tail}}
-      </div>
-    </div>
-</details>
-"""
-    ).render(
+            <div class="row">       <div class="col">         <p
+        style="margin-top: 1rem;">         <b>Head: {{max_values}} most
+        common values in column <em>{{column}}</em></b>
+        {{table_head}}       </div>       <div class="col">         <p
+        style="margin-top: 1rem;">         <b>Tail: {{max_values}} least
+        common values in column <em>{{column}}</em></b>
+        {{table_tail}}       </div>     </div> </details>
+        """).render(
         {
             "max_values": len(counter.most_common(max_rows)),
             "table_head": create_frequent_values_table(counter=counter, top=max_rows),

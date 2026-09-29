@@ -213,20 +213,21 @@ def create_section_template() -> str:
 
     ```
     """
-    return """<h{{depth}} id="{{id}}">{{section}} {{title}} </h{{depth}}>
+    return """<h{{depth}} id="{{id}}">{{section}} {{title}}
+           </h{{depth}}>
 
-{{go_to_top}}
+           {{go_to_top}}
 
-<p style="margin-top: 1rem;">
-This section analyzes the temporal distribution of null values in all columns.
-The column <em>{{dt_column}}</em> is used as the temporal column.
+           <p style="margin-top: 1rem;"> This section analyzes the
+           temporal distribution of null values in all columns. The
+           column <em>{{dt_column}}</em> is used as the temporal column.
 
-{{figure}}
+           {{figure}}
 
-{{table}}
+           {{table}}
 
-<p style="margin-top: 1rem;">
-"""
+           <p style="margin-top: 1rem;">
+           """
 
 
 def create_temporal_null_figure(
@@ -345,31 +346,22 @@ def create_temporal_null_table(
     rows = []
     for label, null, total in zip(labels, nulls, totals):
         rows.append(create_temporal_null_table_row(label=label, num_nulls=null, total=total))
-    return Template(
-        """<details>
-    <summary>[show statistics per temporal period]</summary>
+    return Template("""<details> <summary>[show statistics per temporal
+        period]</summary>
 
-    <p>The following table shows some statistics for each period.
+        <p>The following table shows some statistics for each period.
 
-    <table class="table table-hover table-responsive w-auto" >
-        <thead class="thead table-group-divider">
-            <tr>
-                <th>period</th>
-                <th>number of null values</th>
-                <th>number of non-null values</th>
-                <th>total number of values</th>
-                <th>percentage of null values</th>
-                <th>percentage of non-null values</th>
-            </tr>
-        </thead>
-        <tbody class="tbody table-group-divider">
-            {{rows}}
-            <tr class="table-group-divider"></tr>
-        </tbody>
-    </table>
-</details>
-"""
-    ).render({"rows": "\n".join(rows), "period": period})
+            <table class="table table-hover table-responsive w-auto" >
+        <thead class="thead table-group-divider">             <tr>
+        <th>period</th>                 <th>number of null values</th>
+        <th>number of non-null values</th>                 <th>total
+        number of values</th>                 <th>percentage of null
+        values</th>                 <th>percentage of non-null
+        values</th>             </tr>         </thead>         <tbody
+        class="tbody table-group-divider">             {{rows}}
+        <tr class="table-group-divider"></tr>         </tbody>
+        </table> </details>
+        """).render({"rows": "\n".join(rows), "period": period})
 
 
 def create_temporal_null_table_row(label: str, num_nulls: int, total: int) -> str:
@@ -393,16 +385,11 @@ def create_temporal_null_table_row(label: str, num_nulls: int, total: int) -> st
     ```
     """
     num_non_nulls = total - num_nulls
-    return Template(
-        """<tr>
-    <th>{{label}}</th>
-    <td {{num_style}}>{{num_nulls}}</td>
-    <td {{num_style}}>{{num_non_nulls}}</td>
-    <td {{num_style}}>{{total}}</td>
-    <td {{num_style}}>{{num_nulls_pct}}</td>
-    <td {{num_style}}>{{num_non_nulls_pct}}</td>
-</tr>"""
-    ).render(
+    return Template("""<tr> <th>{{label}}</th> <td {{num_style}}>{{num_nulls}}</td>
+        <td {{num_style}}>{{num_non_nulls}}</td> <td
+        {{num_style}}>{{total}}</td> <td
+        {{num_style}}>{{num_nulls_pct}}</td> <td
+        {{num_style}}>{{num_non_nulls_pct}}</td> </tr>""").render(
         {
             "num_style": 'style="text-align: right;"',
             "label": label,

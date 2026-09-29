@@ -123,23 +123,25 @@ def create_section_template() -> str:
 
     ```
     """
-    return """<h{{depth}} id="{{id}}">{{section}} {{title}} </h{{depth}}>
+    return """<h{{depth}} id="{{id}}">{{section}} {{title}}
+           </h{{depth}}>
 
-{{go_to_top}}
+           {{go_to_top}}
 
-<p style="margin-top: 1rem;">
-This section analyzes the {{top}} most frequent values in <em>{{column}}</em>.
+           <p style="margin-top: 1rem;"> This section analyzes the
+           {{top}} most frequent values in <em>{{column}}</em>.
 
-<ul>
-  <li> <b>count</b>: is the number of occurrences of the value </li>
-  <li> <b>percentage</b>: is the number of occurrences the value divided by the total number of occurrences </li>
-  <li> <b>cumulative percentage</b>: is the sum of the percentage of occurrence for the value plus all the previous values in the table. </li>
-</ul>
+           <ul>   <li> <b>count</b>: is the number of occurrences of the
+           value </li>   <li> <b>percentage</b>: is the number of
+           occurrences the value divided by the total number of
+           occurrences </li>   <li> <b>cumulative percentage</b>: is the
+           sum of the percentage of occurrence for the value plus all
+           the previous values in the table. </li> </ul>
 
-{{table}}
+           {{table}}
 
-<p style="margin-top: 1rem;">
-"""
+           <p style="margin-top: 1rem;">
+           """
 
 
 def create_frequent_values_table(counter: Counter, top: int = 100, reverse: bool = False) -> str:
@@ -174,23 +176,12 @@ def create_frequent_values_table(counter: Counter, top: int = 100, reverse: bool
     for value, count in most_common:
         cumcount += count
         rows.append(create_table_row(value=value, count=count, total=total, cumcount=cumcount))
-    return Template(
-        """<table class="table table-hover table-responsive w-auto" >
-    <thead class="thead table-group-divider">
-        <tr>
-            <th>value</th>
-            <th>count</th>
-            <th>percentage (%)</th>
-            <th>cumulative percentage (%)</th>
-        </tr>
-    </thead>
-    <tbody class="tbody table-group-divider">
-        {{rows}}
-        <tr class="table-group-divider"></tr>
-    </tbody>
-</table>
-"""
-    ).render({"rows": "\n".join(rows)})
+    return Template("""<table class="table table-hover table-responsive w-auto" >
+        <thead class="thead table-group-divider"> <tr> <th>value</th>
+        <th>count</th> <th>percentage (%)</th> <th>cumulative percentage
+        (%)</th> </tr> </thead> <tbody class="tbody table-group-
+        divider"> {{rows}} <tr class="table-group-divider"></tr>
+        </tbody> </table>""").render({"rows": "\n".join(rows)})
 
 
 def create_table_row(value: str, count: int, total: int, cumcount: int) -> str:
@@ -216,14 +207,9 @@ def create_table_row(value: str, count: int, total: int, cumcount: int) -> str:
     """
     pct = 100 * count / total if total > 0 else float("nan")
     cum_percentage = 100 * cumcount / total if total > 0 else float("nan")
-    return Template(
-        """<tr>
-    <th>{{value}}</th>
-    <td {{num_style}}>{{count}}</td>
-    <td {{num_style}}>{{percentage}}</td>
-    <td {{num_style}}>{{cum_percentage}}</td>
-</tr>"""
-    ).render(
+    return Template("""<tr> <th>{{value}}</th> <td {{num_style}}>{{count}}</td> <td
+        {{num_style}}>{{percentage}}</td> <td
+        {{num_style}}>{{cum_percentage}}</td> </tr>""").render(
         {
             "num_style": 'style="text-align: right;"',
             "value": value,
